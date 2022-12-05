@@ -9,7 +9,7 @@ const Worker = (props) => {
     age:{age}<br/>
      ID:{ID}<br/>
 
-    <button onClick={()=> props.removeWorker(props.index) }>DELTE</button>
+    <button onClick={()=> props.removeWorker(ID) }>DELTE</button>
 
     </div>
   )

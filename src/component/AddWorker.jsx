@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const AddWorker = ({pushWorker}) => {
+const AddWorker = ({pushWorker , isIdExsist}) => {
     const[ableButton,setAbleButton] = useState(true);
     const [worker, setWorker] = useState({
     name: '',
@@ -14,11 +14,15 @@ const AddWorker = ({pushWorker}) => {
     };
   
 useEffect(()=>{
-  worker.name && worker.ID && worker.age 
+  worker.name && worker.ID && worker.age && ! isIdExsist(worker.ID)
    ? setAbleButton(false)
    : setAbleButton(true);
 
-},[worker.name ,worker.ID,worker.age])
+  //  worker.ID && isIdExsist(worker.ID)
+
+  },[worker.name ,worker.ID,worker.age])
+
+
 
 const removeValue = ()=>{
   setWorker({
@@ -27,6 +31,10 @@ const removeValue = ()=>{
     age: ''})
 }
    
+const warningIdExists = () =>{
+  isIdExsist(worker.ID)&&
+  alert("The ID already exists")
+}
     return(
 
         // <form onSubmit={handleSubmit}>
@@ -42,7 +50,9 @@ const removeValue = ()=>{
         </label>
         <label>
           ID:
-          <input type="text" value={worker.ID} onChange={(event) => handleChange(event , "ID")} />
+          <input type="text" style={{borderColor: ! isIdExsist(worker.ID) ? 'black' : 'red'}}
+           value={worker.ID} onChange={(event) => handleChange(event , "ID")}
+           onBlur={warningIdExists} />
         </label>
         <input value="Submit" type="submit"  disabled={ableButton} 
         onClick={(e)=>{ e.preventDefault(); pushWorker(worker); removeValue() }}/>

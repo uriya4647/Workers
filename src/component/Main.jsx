@@ -5,41 +5,57 @@ import { sortByAge, sortByName } from './sortByName';
 
 const Main = () => {
   const [workers, setWorkers] = useState([]);
-    const [sort ,setSort] = useState([...workers]);
+  const [sort, setSort] = useState([...workers]);
 
+
+  const pushWorker = (worker) => setWorkers([...workers, worker])
+
+  const removeWorker = (id) => {
     
-    const pushWorker = (worker)=> setWorkers([...workers,worker])
+    let index = workers.findIndex(object => {
+      return object.ID === id;
+    });
+    let tempWorker = [...workers]
+    tempWorker.splice(index, 1)
+    setWorkers(tempWorker)
 
-    const removeWorker = (index) => 
-    {
-      let tempWorker = [...workers]
-      tempWorker.splice(index,1)
-      setWorkers(tempWorker)
-    } 
-    useEffect(()=>{
-      // sort by last sort
-      setSort( sortByName([...workers]))
-      
-    }, [workers] )
-  
+  }
+  const isIdExsist = (id) =>{
 
-
-  console.log("worker" ,workers);
-
+    let index = workers.findIndex(object => {
+      return object.ID === id;
+    });
    
+    console.log(index >= 0 );
+    return index >= 0 
+  }
+
+  useEffect(() => {
+    console.log(sort);
+    setSort(sortByName([...workers]))
+
+  }, [workers])
+
+
+
+  console.log("worker", workers);
+
+
 
 
   return (
     <div>
-      <AddWorker pushWorker ={pushWorker} />
-      <button onClick={()=>{ setSort(sortByName([...workers]))}} >sortByName</button>
-      <button onClick={()=>{setSort(sortByAge([...workers]))}} >sortByAge</button>
-      {sort.map((worker , index) => {return <Worker  key = {worker.ID} 
-      worker ={worker} index= {index} removeWorker = {removeWorker}/>})}
+      <AddWorker pushWorker={pushWorker} isIdExsist={isIdExsist} />
+      <button onClick={() => { setSort(sortByName([...workers])) }} >sortByName</button>
+      <button onClick={() => { setSort(sortByAge([...workers])) }} >sortByAge</button>
+      {sort.map(( worker ) => {
+        return <Worker key={worker.ID}
+          worker={worker}  removeWorker={removeWorker} />
+      })}
 
 
-      
-      </div>
+
+    </div>
   )
 }
 
