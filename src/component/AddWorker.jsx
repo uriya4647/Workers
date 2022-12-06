@@ -82,6 +82,7 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
         variant="contained"
         endIcon={<SendIcon />}
         color="success"
+        disabled={ableButton } 
       >
         Send
       </Button>
