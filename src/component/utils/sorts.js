@@ -14,3 +14,9 @@ export const sortByAge = ( arr ) =>{
     return arr;
 } 
 
+// sort revers thr array
+export const sortRevers = ( arr ) => 
+{
+    return arr.reverse()
+}
+

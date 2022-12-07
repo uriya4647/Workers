@@ -9,6 +9,7 @@ import { IconButton } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import  PropTypes  from "prop-types";
 
 
 
@@ -16,7 +17,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 
 const Worker = (props) => {
-  //
+  // props belong HomePage.
   const { ID, name, age } = props.worker;
 
   return (
@@ -71,3 +72,12 @@ const Worker = (props) => {
 };
 
 export default Worker;
+
+
+Worker.prototype = {
+  removeWorker: PropTypes.func,
+  ID : PropTypes.string,
+  name: PropTypes.string,
+  age: PropTypes.string
+
+}

@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+import  PropTypes  from "prop-types";
 
-const AddWorker = ({ pushWorker, isIdExsist }) => {
+
+const AddWorker = ( { pushWorker, isIdExsist }) => {
+
   // state responsible on the button 'addWorke' .
   const [ableButton, setAbleButton] = useState(true);
 
@@ -15,7 +18,7 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
     age: "",
   });
 
-  // chenge inputin the object
+  // change input in the object
   const handleChange = (event, prop) => {
     setWorker({ ...worker, [prop]: event.target.value });
   };
@@ -36,7 +39,7 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
     });
   };
 
-  // Alerts if the ID exists
+  //call Alerts if the alredy ID exists
   const warningIdExists = () => {
     isIdExsist(worker.ID) && alert("The ID already exists");
   };
@@ -64,7 +67,7 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
         label="Age"
         value={worker.age}
         onChange={(event) => handleChange(event, "age")}
-        // defaultValue="foo"
+     
       />
       <TextField
         id="outlined-uncontrolled"
@@ -75,7 +78,7 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
       />
       <Button
         onClick={(e) => {
-          //       e.preventDefault();
+        
           pushWorker(worker);
           removeValue();
         }}
@@ -91,3 +94,9 @@ const AddWorker = ({ pushWorker, isIdExsist }) => {
 };
 
 export default AddWorker;
+
+
+AddWorker.propTypes = {
+  pushWorker: PropTypes.func,
+  isIdExsist: PropTypes.func
+}
