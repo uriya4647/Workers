@@ -4,12 +4,20 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import  PropTypes  from "prop-types";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+
 
 
 const AddWorker = ( { pushWorker, isIdExsist }) => {
 
-  // state responsible on the button 'addWorke' .
+  // state that responsible on the button 'addWorke' .
   const [ableButton, setAbleButton] = useState(true);
+   
+  // state that responsible on the Checkbox .
+  const [checked, setChecked] = useState(false);
+  console.log(checked);
 
   // state responsible on the input.
   const [worker, setWorker] = useState({
@@ -39,10 +47,23 @@ const AddWorker = ( { pushWorker, isIdExsist }) => {
     });
   };
 
-  //call Alerts if the alredy ID exists
+  //call Alerts if the alredy ID exists.
   const warningIdExists = () => {
     isIdExsist(worker.ID) && alert("The ID already exists");
   };
+
+  // function that generat auto ID and check that the ID doesn't exist.
+  const autoId = () => {
+   if (!checked){
+    let randomId = Date.now().toString(36);
+    
+    while(isIdExsist(randomId)){
+      randomId = Date.now().toString();
+    }
+    setWorker({ ...worker, ID: randomId })
+  } else
+  setWorker({ ...worker, ID: '' })
+  }
 
   return (
     <Box
@@ -52,6 +73,7 @@ const AddWorker = ( { pushWorker, isIdExsist }) => {
         width: "100%",
         maxWidth: 500,
         bgcolor: "background.paper",
+        
       }}
       noValidate
       autoComplete="off"
@@ -76,6 +98,12 @@ const AddWorker = ( { pushWorker, isIdExsist }) => {
         onChange={(event) => handleChange(event, "ID")}
         onBlur={warningIdExists}
       />
+      <FormControlLabel
+            control={
+              <Checkbox checked={checked} onClick={()=> {setChecked(!checked) ; autoId() }} />
+            }
+            label="Auto ID"
+          />
       <Button
         onClick={(e) => {
         
