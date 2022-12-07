@@ -1,16 +1,11 @@
 import React, { useState } from "react";
-// import "./App.css";
 import AddWorker from "./AddWorker";
-import Worker from "./Worker";
 import Header from "./Header";
 import Footer from "./Footer";
-import { sortByAge, sortByName , sortRevers} from "./utils/sorts";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
+import ViewList from "./ViewList";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
+
 
 const HomePage = () => {
   
@@ -80,70 +75,9 @@ const HomePage = () => {
           >
             <AddWorker pushWorker={pushWorker} isIdExist={isIdExist} />
           </Grid>
-          <Grid xs={12} md={12}>
-            <ButtonGroup
-              disableElevation
-              variant="contained"
-              aria-label="Disabled elevation buttons"
-            >
-              <Button
-                onClick={() => {
-                  setWorkers(sortByName([...workers]));
-                }}
-              >
-                Sort By Name
-              </Button>
-              <Button
-                onClick={() => {
-                  setWorkers(sortByAge([...workers]));
-                }}
-              >
-                Sort By Age
-              </Button>
-              <Button
-                onClick={() => {
-                  setWorkers(sortRevers([...workers]));
-                }}
-              >
-                Sort Revers
-              </Button>
-            </ButtonGroup>
-          </Grid>
-          <Grid
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            xs={12}
-            md={12}
-          >
-            <List
-              sx={{
-                width: "100%",
-                maxWidth: 400,
-                bgcolor: "background.paper",
-                position: "relative",
-                overflow: "auto",
-                maxHeight: 600,
-                "& ul": { padding: 0 },
-                borderRadius: 2,
-              }}
-            >
-              {workers.map((worker, index) => {
-                return (
-                  <React.Fragment key={worker.ID}>
-                    <Worker
-                      worker={worker}
-                      removeWorker={removeWorker}
-                    />
-                    <Divider
-                      variant="inset"
-                      component="li"
-                    />
-                  </React.Fragment>
-                );
-              })}
-            </List>
-          </Grid>
+         
+          <ViewList workers={workers} setWorkers ={setWorkers} removeWorker ={removeWorker} />
+       
           <Grid
             display="flex"
             justifyContent="center"
