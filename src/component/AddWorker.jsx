@@ -12,8 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const AddWorker = ( { pushWorker, isIdExist }) => {
 
-  // state that responsible on the button 'addWorke' .
-  // const [ableButton, setAbleButton] = useState(true);
+
    
   // state that responsible on the Checkbox .
   const [checked, setChecked] = useState(false);
@@ -31,12 +30,6 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
     setWorker({ ...worker, [prop]: event.target.value });
   };
 
-  // listening to inputs that enable the button 'addWork'.
-  // useEffect(() => {
-  //   worker.name && worker.ID && worker.age && !isIdExist(worker.ID)
-  //     ? setAbleButton(false)
-  //     : setAbleButton(true);
-  // }, [worker.name, worker.ID, worker.age]);
 
   // remove value after add new worker
   const resetValue = () => {
@@ -92,7 +85,7 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
         label="Age"
         value={worker.age}
         onChange={(event) => handleChange(event, "age")}
-     
+        type="number"
       />
       <TextField
         id="outlined-uncontrolled"
