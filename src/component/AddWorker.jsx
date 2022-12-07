@@ -10,14 +10,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 
 
-const AddWorker = ( { pushWorker, isIdExsist }) => {
+const AddWorker = ( { pushWorker, isIdExist }) => {
 
   // state that responsible on the button 'addWorke' .
-  const [ableButton, setAbleButton] = useState(true);
+  // const [ableButton, setAbleButton] = useState(true);
    
   // state that responsible on the Checkbox .
   const [checked, setChecked] = useState(false);
-  console.log(checked);
+  // console.log(checked);
 
   // state responsible on the input.
   const [worker, setWorker] = useState({
@@ -32,32 +32,35 @@ const AddWorker = ( { pushWorker, isIdExsist }) => {
   };
 
   // listening to inputs that enable the button 'addWork'.
-  useEffect(() => {
-    worker.name && worker.ID && worker.age && !isIdExsist(worker.ID)
-      ? setAbleButton(false)
-      : setAbleButton(true);
-  }, [worker.name, worker.ID, worker.age]);
+  // useEffect(() => {
+  //   worker.name && worker.ID && worker.age && !isIdExist(worker.ID)
+  //     ? setAbleButton(false)
+  //     : setAbleButton(true);
+  // }, [worker.name, worker.ID, worker.age]);
 
   // remove value after add new worker
-  const removeValue = () => {
+  const resetValue = () => {
     setWorker({
       name: "",
       ID: "",
       age: "",
     });
+    setChecked(false)
   };
 
-  //call Alerts if the alredy ID exists.
+  const isNotEnabled = () =>  worker.name && worker.ID && worker.age && !isIdExist(worker.ID);
+
+  //call Alerts if the ID already exists.
   const warningIdExists = () => {
-    isIdExsist(worker.ID) && alert("The ID already exists");
+    isIdExist(worker.ID) && alert("The ID already exists");
   };
 
-  // function that generat auto ID and check that the ID doesn't exist.
+  // function that generate auto ID and check that the ID doesn't exist.
   const autoId = () => {
    if (!checked){
     let randomId = Date.now().toString(36);
     
-    while(isIdExsist(randomId)){
+    while(isIdExist(randomId)){
       randomId = Date.now().toString();
     }
     setWorker({ ...worker, ID: randomId })
@@ -108,12 +111,12 @@ const AddWorker = ( { pushWorker, isIdExsist }) => {
         onClick={(e) => {
         
           pushWorker(worker);
-          removeValue();
+          resetValue();
         }}
         variant="contained"
         endIcon={<SendIcon />}
         color="success"
-        disabled={ableButton } 
+        disabled={!isNotEnabled() }
       >
         Send
       </Button>
@@ -126,5 +129,5 @@ export default AddWorker;
 
 AddWorker.propTypes = {
   pushWorker: PropTypes.func,
-  isIdExsist: PropTypes.func
+  isIdExist: PropTypes.func
 }

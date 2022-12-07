@@ -5,7 +5,6 @@ import Worker from "./Worker";
 import Header from "./Header";
 import Footer from "./Footer";
 import { sortByAge, sortByName , sortRevers} from "./utils/sorts";
-// import SortsButtom from "./component/SortsButton";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -18,10 +17,10 @@ const HomePage = () => {
   const [workers, setWorkers] = useState([]);
 
 
-  // push new object worker to workers araay
+  // push new object worker to workers array
   const pushWorker = (worker) => setWorkers([...workers, worker]);
 
-  // remove spsific worker by comparing ID
+  // remove specific worker by comparing ID
   const removeWorker = (id) => {
     let index = workers.findIndex((object) => {
       return object.ID === id;
@@ -31,8 +30,8 @@ const HomePage = () => {
     setWorkers(tempWorker);
   };
 
-  // checking if ID alredy exisit and return boolean
-  const isIdExsist = (id) => {
+  // checking if ID already exist and return boolean
+  const isIdExist = (id) => {
     let index = workers.findIndex((object) => {
       return object.ID === id;
     });
@@ -65,7 +64,7 @@ const HomePage = () => {
             xs={12}
             md={12}
           >
-            <AddWorker pushWorker={pushWorker} isIdExsist={isIdExsist} />
+            <AddWorker pushWorker={pushWorker} isIdExist={isIdExist} />
           </Grid>
           <Grid xs={12} md={12}>
             <ButtonGroup
@@ -119,12 +118,10 @@ const HomePage = () => {
                 return (
                   <React.Fragment key={worker.ID}>
                     <Worker
-                    
                       worker={worker}
                       removeWorker={removeWorker}
                     />
                     <Divider
-                      // key={index}
                       variant="inset"
                       component="li"
                     />
