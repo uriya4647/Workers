@@ -13,12 +13,26 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 
 const HomePage = () => {
-  //state for all data workers
-  const [workers, setWorkers] = useState([]);
+  
+
+  //state responsible for all data workers and initializ by session storage at refresh
+  const [workers, setWorkers] = useState(initializeWorkers);
+  
+  // update session storage immediately
+  sessionStorage.setItem("workers", JSON.stringify(workers));
+  
+  // function that check if session storage alredy initialized or is empty.
+  function initializeWorkers() {
+    let initializ = sessionStorage.getItem("workers") ? 
+    JSON.parse(sessionStorage.getItem("workers")) :
+    [];
+    return initializ;
+  }
+
+  // push new object worker to workers array and update session storage
+  const pushWorker = (worker) => setWorkers([...workers, worker])
 
 
-  // push new object worker to workers array
-  const pushWorker = (worker) => setWorkers([...workers, worker]);
 
   // remove specific worker by comparing ID
   const removeWorker = (id) => {
