@@ -6,6 +6,8 @@ import SendIcon from "@mui/icons-material/Send";
 import  PropTypes  from "prop-types";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from "@mui/material/Unstable_Grid2";
+
 
 
 
@@ -62,6 +64,13 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
   }
 
   return (
+    <Grid
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    xs={12}
+    md={12}
+  >
     <Box
       component="form"
       sx={{
@@ -114,6 +123,7 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
         Send
       </Button>
     </Box>
+    </Grid>
   );
 };
 

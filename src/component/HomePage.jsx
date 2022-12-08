@@ -6,28 +6,23 @@ import ViewList from "./ViewList";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 
-
 const HomePage = () => {
-  
-
   //state responsible for all data workers and initializ by session storage at refresh
   const [workers, setWorkers] = useState(initializeWorkers);
-  
+
   // update session storage immediately
   sessionStorage.setItem("workers", JSON.stringify(workers));
-  
+
   // function that check if session storage alredy initialized or is empty.
   function initializeWorkers() {
-    let initializ = sessionStorage.getItem("workers") ? 
-    JSON.parse(sessionStorage.getItem("workers")) :
-    [];
+    let initializ = sessionStorage.getItem("workers")
+      ? JSON.parse(sessionStorage.getItem("workers"))
+      : [];
     return initializ;
   }
 
   // push new object worker to workers array and update session storage
-  const pushWorker = (worker) => setWorkers([...workers, worker])
-
-
+  const pushWorker = (worker) => setWorkers([...workers, worker]);
 
   // remove specific worker by comparing ID
   const removeWorker = (id) => {
@@ -57,40 +52,22 @@ const HomePage = () => {
         sx={{ flexGrow: 1 }}
       >
         <Grid container spacing={2}>
-          <Grid
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            xs={12}
-            md={12}
-          >
-            <Header />
-          </Grid>
-          <Grid
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            xs={12}
-            md={12}
-          >
-            <AddWorker pushWorker={pushWorker} isIdExist={isIdExist} />
-          </Grid>
-         
-          <ViewList workers={workers} setWorkers ={setWorkers} removeWorker ={removeWorker} />
-       
-          <Grid
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            xs={12}
-            md={12}
-          >
-            <Footer />
-          </Grid>
+          <Header />
+
+          <AddWorker pushWorker={pushWorker} isIdExist={isIdExist} />
+
+          <ViewList
+            workers={workers}
+            setWorkers={setWorkers}
+            removeWorker={removeWorker}
+          />
+
+          <Footer />
+          {/* </Grid> */}
         </Grid>
       </Box>
     </div>
   );
-}
+};
 
 export default HomePage;
