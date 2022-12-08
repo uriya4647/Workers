@@ -28,10 +28,6 @@ const Worker = (props) => {
           <ListItemAvatar>
             <Avatar>
               <Avatars name={name} />
-              {/* <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" >
-           
-             {avatarLetters()}
-            </Avatar> */}
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={name} secondary="Name" />
