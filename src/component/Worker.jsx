@@ -20,6 +20,18 @@ const Worker = (props) => {
   // props belong HomePage.
   const { ID, name, age } = props.worker;
 
+  // function that returns the capial letter of the first name and the capital letter the last name.
+  const avatrLetters = () => {
+    let avaterName =    name.indexOf(' ') < 0 ?  
+    name.charAt(0).toUpperCase() :
+    name.charAt(0).toUpperCase() +
+    name.charAt( name.indexOf(' ') +1).toUpperCase() 
+ 
+    return avaterName
+  }
+    
+
+  
   return (
 
 <div>
@@ -36,7 +48,8 @@ const Worker = (props) => {
           <Avatar>
         
        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-             {name.charAt(0).toUpperCase()}
+           
+             {avatrLetters()}
             </Avatar>
           </Avatar>
         </ListItemAvatar>
