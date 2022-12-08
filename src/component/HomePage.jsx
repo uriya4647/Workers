@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Unstable_Grid2";
 
 const HomePage = () => {
-  //state responsible for all data workers and initializ by session storage at refresh
+  //state responsible for all data workers and initialize by session storage at refresh
   const [workers, setWorkers] = useState(initializeWorkers);
 
   // update session storage immediately
@@ -15,10 +15,10 @@ const HomePage = () => {
 
   // function that check if session storage alredy initialized or is empty.
   function initializeWorkers() {
-    let initializ = sessionStorage.getItem("workers")
+    return  sessionStorage.getItem("workers")
       ? JSON.parse(sessionStorage.getItem("workers"))
       : [];
-    return initializ;
+
   }
 
   // push new object worker to workers array and update session storage
