@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 const Avatars = ({ name }) => {
   const arrayPicture = ["", img1, img2, img3, img4];
 
+  // return ramdomal picture
   const randomPicture = () => {
     return arrayPicture[Math.floor(Math.random() * arrayPicture.length)];
   };
