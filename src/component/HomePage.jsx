@@ -63,7 +63,7 @@ const HomePage = () => {
           />
 
           <Footer />
-          {/* </Grid> */}
+       
         </Grid>
       </Box>
     </div>

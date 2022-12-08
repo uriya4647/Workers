@@ -6,17 +6,14 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { useState } from "react";
 const SortsButton = ({ workers, setWorkers }) => {
-    
-    //stat that check if button sort  ASC or DESC
-    const [orderDirect, setOrderDirect] = useState(false);
+  //stat that check if button sort  ASC or DESC
+  const [orderDirect, setOrderDirect] = useState(false);
 
   //state that check which button pressed
   const [tapButton, setTapButton] = useState({
     buttonName: false,
     buttonAge: false,
   });
-
-
 
   return (
     <Grid xs={12} md={12}>
@@ -44,7 +41,6 @@ const SortsButton = ({ workers, setWorkers }) => {
           }}
         >
           {orderDirect ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-       
         </Button>
         <Button
           variant={tapButton.buttonAge ? "outlined" : "contained"}
