@@ -32,16 +32,10 @@ return(
     >
       {workers.map(( worker ) => {
         return (
-          <React.Fragment key={worker.ID}>
-            <Worker
+            <Worker key={worker.ID}
               worker={worker}
               removeWorker={removeWorker}
             />
-            <Divider
-              variant="inset"
-              component="li"
-            />
-          </React.Fragment>
         );
       })}
     </List>
@@ -53,7 +47,7 @@ return(
 export default ViewList
 
 ViewList.propTypes = {
-   workers : PropTypes.object,
+   workers : PropTypes.array,
    setWorkers: PropTypes.func,
    removeWorker: PropTypes.func
 

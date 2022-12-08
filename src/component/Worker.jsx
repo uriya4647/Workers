@@ -47,14 +47,6 @@ const Worker = (props) => {
           <ListItemText primary={age} secondary="Age" />
         </ListItem>
         <Divider component="li" />
-        <li>
-          <Typography
-            sx={{ mt: 0.5, ml: 2 }}
-            color="text.secondary"
-            display="block"
-            variant="caption"
-          ></Typography>
-        </li>
         <ListItem>
           <ListItemText primary={ID} secondary="ID" />
         </ListItem>

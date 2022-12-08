@@ -45,7 +45,6 @@ const HomePage = () => {
   return (
     <div className="App">
       <Box
-        xs
         display="flex"
         justifyContent="center"
         alignItems="center"

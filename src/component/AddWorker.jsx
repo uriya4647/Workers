@@ -52,15 +52,12 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
 
   // function that generate auto ID and check that the ID doesn't exist.
   const autoId = () => {
-   if (!checked){
     let randomId = Date.now().toString(36);
     
     while(isIdExist(randomId)){
       randomId = Date.now().toString();
     }
     setWorker({ ...worker, ID: randomId })
-  } else
-  setWorker({ ...worker, ID: '' })
   }
 
   return (
@@ -105,7 +102,13 @@ const AddWorker = ( { pushWorker, isIdExist }) => {
       />
       <FormControlLabel
             control={
-              <Checkbox checked={checked} onClick={()=> {setChecked(!checked) ; autoId() }} />
+              <Checkbox checked={checked} onClick={()=> {
+                  const current = !checked;
+                  setChecked(current) ;
+                  if(current){
+                      autoId()
+                  }
+                   }} />
             }
             label="Auto ID"
           />
